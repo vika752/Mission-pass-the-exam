@@ -1,9 +1,10 @@
 import os
 import random
-import pygame
+import pygame, sys
 
 
 pygame.init()
+pygame.mixer.init()
 mab = 0
 height = 600
 width = 720
@@ -12,6 +13,8 @@ screen = pygame.display.set_mode(size)
 running = True
 s1 = []
 s2 = []
+splat = pygame.mixer.Sound("fon.wav")
+splat.play()
 
 
 class Person(pygame.sprite.Sprite):
