@@ -14,6 +14,7 @@ screen.fill((255, 255, 255))
 snow_surf = [pygame.image.load('/Users/demo/Documents/snow/snow1.0.png'), pygame.image.load('/Users/demo/Documents/snow/snow1.3.png'), pygame.image.load('/Users/demo/Documents/snow/snow1.2.png'), pygame.image.load('/Users/demo/Documents/snow/snow1.1.png')]
 
 #Задаем цвет, начальные координаты и радиус шарика, который станет определителем событий
+
 WHITE = (255, 255, 255)
 x = 0
 y = 0 
@@ -40,7 +41,7 @@ while not finished:
     snow_rect = snow_surf[0].get_rect(bottomright=(W, H))
     screen.blit(snow_surf[0], snow_rect)
     
-# В зависимости от положения шарика, меняется картина фона
+# В зависимости от положения шарика, меняется картинrа фона
 
     if x > 100: 
         snow_rect = snow_surf[1].get_rect(bottomright=(W, H))
