@@ -1,3 +1,5 @@
+" В этой части программы. Создаем  класс снежных комьев, при столкновении с которыми, у лыжника будет исчезать одна жизнь" 
+
 import pygame, sys, os
 from pygame.draw import *
 from pygame.locals import *
@@ -11,30 +13,26 @@ HEIGHT = 900
 FPS = 60
 
 WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
-YELLOW = (255, 255, 0)
+
 pygame.init()
 pygame.mixer.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Hi!")
+pygame.display.set_caption("Ком!")
 clock = pygame.time.Clock()
 
 class Mob(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         self.image_orig = random.choice(abst_images)
-        self.image_orig.set_colorkey(BLACK)
+        self.image_orig.set_colorkey(WHITE)
         self.image = self.image_orig.copy()
         self.rect = self.image.get_rect()
         self.radius = int(self.rect.width * .085 / 2)
         # pygame.draw.circle(self.image, RED, self.rect.center, self.radius)
-        self.rect.x = random.randrange(100,400,10)
-        self.rect.y = random.randrange(-150, -100, 10)
-        self.speedy = random.randrange(1,8, 1)
-        self.speedx = random.randrange(-3,3, 1)
+        self.rect.x = random.randrange(100,600)
+        self.rect.y = random.randrange(-150, -100)
+        self.speedy = random.randrange(1,8)
+        self.speedx = random.randrange(-3,3)
         self.rot = 0
         self.rot_speed = random.randrange(-8,8,1)
         self.last_update = pygame.time.get_ticks()
@@ -55,9 +53,11 @@ class Mob(pygame.sprite.Sprite):
         self.rect.x += self.speedx
         self.rect.y += self.speedy
         if self.rect.top > HEIGHT + 10 or self.rect.left < -25 or self.rect.right > WIDTH + 20:
-            self.rect.x = 200
-            self.rect.y = -90
-            self.speedy = 3
+            self.rect.x = random.randrange(100,600)
+            self.rect.y = -100
+            self.speedy = random.randrange(1,4)
+            
+"Загружаем изображения снежных комьев."
 
 abst_images = [pygame.image.load('/Users/demo/Documents/abst.png'),pygame.image.load('/Users/demo/Documents/abst2.png')]
 
@@ -67,7 +67,7 @@ background_rect = background.get_rect()
 all_sprites = pygame.sprite.Group()
 mobs = pygame.sprite.Group()
 
-for i in range(3):
+for i in range(1):
     m = Mob()
     all_sprites.add(m)
     mobs.add(m)
@@ -85,7 +85,7 @@ while running:
 
 
 
-    screen.fill(BLACK)
+    screen.fill(WHITE)
     screen.blit(background, background_rect)
     
     all_sprites.draw(screen)
