@@ -1,32 +1,38 @@
-
 import pygame, sys, random
-
 pygame.init()
 
 display_width = 800
-display_heght = 600
+display_height = 600
 
 display = pygame.display.set_mode((display_width, display_height))
 #colors
 
+
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.MOUSEMOTION:
+            x, y = event.pos
+            print(x,y)
+
+
 class Button():
-    def__init__(self, width, height, inactive_color, active_color):
+    def __init__(self, width, height, inactive_color, active_color):
         self.width = width
         self.height = height
         self.inactive_color = (20, 240, 50)
         self.active_color = (20, 250, 50)
 
-    def draw(self, x, y, message, action=None, font_size=30):
+#action=None означает, что при нажатии кнопки мы можем вызвать какую-то функции
+
+    def draw(self, x, y, message, action = None, font_size = 30):
         mouse  = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
 
-    if x < mouse[0] < x + self.width and y < mouse{1] < y + self.height:
+    if x < mouse[0] < x + self.width and y < mouse[1] < y + self.height:
         pygame.draw.rect(display, self.active_color, (x, y, self.width, self.height))
-
     
-        
         if click[0] == 1 and action is not None:
-                action() 
+            action() 
     else:
         pygame.draw.rect(display, self.inactive_color, (x, y, self.width, self.height)) 
     
@@ -48,7 +54,7 @@ def show_menu():
  
     while show:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT;
+            if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
     
@@ -60,8 +66,8 @@ def show_menu():
     clock.tick(60)
 
 
-def start_game()
-#передаем цикл, который запускает игру.
 
+#передаем цикл, который запускает игру. Например: (def start_game())
 show_menu()
-#меню должно повляться перед запустением игры
+
+#меню должно повляться перед запусканием игры
