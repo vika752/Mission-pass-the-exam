@@ -242,6 +242,7 @@ while running:
             break
 
     all_sprites.draw(screen)
+    #обновление
     all_sprites.update()
     xxx.z = True
     
