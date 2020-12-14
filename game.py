@@ -2,10 +2,11 @@ import os
 import random
 import pygame, sys
 
-
+# Инициализация PyGame
 pygame.init()
 pygame.mixer.init()
 mab = 0
+# параметры окна игры
 height = 600
 width = 720
 size = height, width
@@ -13,10 +14,15 @@ screen = pygame.display.set_mode(size)
 running = True
 s1 = []
 s2 = []
+#создаем звуковой объект
+#воспроизводим его (фоновая музыка)
 splat = pygame.mixer.Sound("fon.wav")
 splat.play()
 
-
+'''
+создание класса, в котором прописывается сам студент(лыжник);
+его движение, используя модуль pygame.sprite
+'''
 class Person(pygame.sprite.Sprite):
     image = pygame.Surface((50, 50))
     image.fill((0, 255, 0))
@@ -74,7 +80,10 @@ class Person(pygame.sprite.Sprite):
         self.rect.centery += 4
         self.rect.centerx += self.Vx
 
-
+'''
+создание класса, в котором прописываются препятствия;
+их движение, используя модуль pygame.sprite
+'''
 class Snowball(pygame.sprite.Sprite):
     image = pygame.Surface((50, 50))
     image.fill((255, 0, 0))
@@ -97,7 +106,10 @@ class Snowball(pygame.sprite.Sprite):
         if self.rect.centery > 800:
             self.kill()
 
-
+'''
+создание класса, в котором прописываются объекты, за которые 
+начисляются баллы
+'''
 class Present(pygame.sprite.Sprite):
     image = pygame.Surface((50, 50))
     image.fill((255, 255, 0))
@@ -120,7 +132,7 @@ class Present(pygame.sprite.Sprite):
         if self.rect.centery > 800:
             self.kill()
 
-
+#создание группы спрайтов в игре
 all_sprites = pygame.sprite.Group()
 
 
@@ -135,6 +147,8 @@ f.close()
 
 FPS = 40
 fpsClock = pygame.time.Clock()
+
+#цикл игры
 while running:
     screen.fill(pygame.Color('white'))
     for event in pygame.event.get():
@@ -230,11 +244,13 @@ while running:
     all_sprites.draw(screen)
     all_sprites.update()
     xxx.z = True
-
+    
+#отображение кол-ва баллов (в нижней части экрана)
     font = pygame.font.Font(None, 50)
     text = font.render("{}".format(str(xxx.score)), 1, (250, 50, 100))
     screen.blit(text, (290, 50))
-
+    
+#отображение времени (в верхней части экрана)
     font = pygame.font.Font(None, 50)
     text = font.render("{}".format(str(Presents)), 1, (0, 0, 0))
     screen.blit(text, (290, 680))
