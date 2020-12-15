@@ -16,11 +16,11 @@ s1 = []
 s2 = []
 #создаем звуковой объект
 #воспроизводим его (фоновая музыка)
-splat = pygame.mixer.Sound("fon.wav")
+splat = pygame.mixer.Sound("image\fon.wav")
 splat.set_volume(0.1) #громкость фоновой музыки
-present = pygame.mixer.Sound("present.wav")
+present = pygame.mixer.Sound("image\present.wav")
 present.set_volume(0.5)
-jump = pygame.mixer.Sound("jump.wav")#звук прыжка
+jump = pygame.mixer.Sound("image\jump.wav")#звук прыжка
 jump.set_volume(0.2)
 
 
