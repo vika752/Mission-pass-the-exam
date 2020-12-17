@@ -215,6 +215,15 @@ def for_statistics(score):
                         elif evt.key == pygame.K_ESCAPE:
                             return
                     elif evt.type == pygame.QUIT:
+                        f = open("config.txt", 'w')
+                        f.write(str(Presents) + ' ' + flag_hero)
+                        f.close()
+
+                        f = open("Statistics.txt", 'w')
+                        for i in top:
+                            f.write(str(i[0]) + ' ' + str(i[1]) + '\n')
+                        f.close()
+
                         exit()
                 font = pygame.font.Font(None, 50)
                 text = font.render("{}".format(str(name)), 1, (0, 0, 0))
@@ -302,6 +311,16 @@ class Menu:
             self.render(screen, font_menu, punkt)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
+
+                    f = open("config.txt", 'w')
+                    f.write(str(Presents) + ' ' + flag_hero)
+                    f.close()
+
+                    f = open("Statistics.txt", 'w')
+                    for i in top:
+                        f.write(str(i[0]) + ' ' + str(i[1]) + '\n')
+                    f.close()
+
                     sys.exit()
                     # блок перемещения по меню, с помощью клавиш
                     if event.key == pygame.K_UP:
@@ -330,6 +349,11 @@ class Menu:
                         for i in top:
                             f.write(str(i[0]) + ' ' + str(i[1]) + '\n')
                         f.close()
+
+                        f = open("config.txt", 'w')
+                        f.write(str(Presents) + ' ' + flag_hero)
+                        f.close()
+
                         exit()
                     elif punkt == 4:
                         flag_hero = 'boy'
